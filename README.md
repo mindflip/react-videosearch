@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Video search app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+simple video search app with react js
+used cra base setting
+for studying react hooks (useState, useEffect)
 
-## Available Scripts
+## What I learned
 
-In the project directory, you can run:
+I learned react hooks (primative, custom)
 
-### `npm start`
+### useState
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It is same with `state` in class component
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```js
+// usally use destructuring assignment
+// 0 index : variable, 1 index : setting function
+const [counter, setCounter] = useState(0);
+```
 
-### `npm test`
+### useEffect
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+allows function components to use something like lifecycle methods
 
-### `npm run build`
+```js
+// 1. When the component is rendered for the first time only
+// put empty array on second argument
+useEffect(() => {
+  // do something like init
+}, []);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// 2. When the component is rendered for the first time and whenever it rerenders
+// leave empty on second argument
+useEffect(() => {
+  // do something
+});
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// 3. When the component is rendered for the first time and (whenever it rerenders and some piece of data has changed)
+// put variable in the array on second argument
+useEffect(() => {
+  // do something with changing count variable
+}, [count]);
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### custom hook
 
-### `npm run eject`
+Best way to create reusable code in a React project (besides components)  
+Created by extracting hook-related code out of a function component  
+Custom hooks always make use of `at least one primitive hook` internally  
+Each custom hook should have one purpose  
+Data-fetching is a great thing to try to make resuable
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Process for creating reusable hooks
+  - Identify each line of code realted to some single purpose
+  - Identify the inputs and the outputs to that code
+  - Extract of the code into a separate function, receiving the inputs as arguments, and returning the outputs
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+used custom hook for video fetching in this project
