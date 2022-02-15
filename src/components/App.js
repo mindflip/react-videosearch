@@ -10,7 +10,6 @@ const App = () => {
 
   useEffect(() => {
     setSelectedVideo(videos[0]);
-    console.log(videos);
   }, [videos]);
 
   return (
